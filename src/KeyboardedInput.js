@@ -24,6 +24,8 @@ class KeyboardedInput extends React.Component {
     isFirstLetterUppercase: PropTypes.any,
     dataset: PropTypes.any,
     onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func
   };
 
   constructor(props) {
@@ -60,6 +62,7 @@ class KeyboardedInput extends React.Component {
         that.input.select();
         that.input.setSelectionRange(that.props.value.length, that.props.value.length);
         that.setState({ ...this.state, showKeyboard: true });
+        this.props.onFocus()
       }
     }, 0);
   }
@@ -69,6 +72,7 @@ class KeyboardedInput extends React.Component {
     setTimeout(() => {
       if (!document.activeElement.classList.contains('keyboard-button') && !document.activeElement.classList.contains('keyboard') && !document.activeElement.classList.contains('keyboard-row')) {
         that.setState({ ...that.state, showKeyboard: false });
+        this.props.onBlur()
       }
     }, 0);
   }
