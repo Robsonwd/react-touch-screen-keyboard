@@ -25,7 +25,7 @@ class KeyboardedInput extends React.Component {
     dataset: PropTypes.any,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
-    onBlur: PropTypes.func
+    onBlur: PropTypes.func,
   };
 
   constructor(props) {
@@ -55,10 +55,10 @@ class KeyboardedInput extends React.Component {
 
   handleFocus() {
     const that = this;
-    this.props.onFocus()
+    this.props.onFocus();
     // Prevent blinking of the keyboard if opaque
     setTimeout(() => {
-      if (typeof(that.props.value) !== 'undefined') {
+      if (typeof (that.props.value) !== 'undefined') {
         that.input.focus();
         that.input.select();
         that.input.setSelectionRange(that.props.value.length, that.props.value.length);
@@ -69,7 +69,7 @@ class KeyboardedInput extends React.Component {
 
   handleFocusLost() {
     const that = this;
-    this.props.onBlur()
+    this.props.onBlur();
     setTimeout(() => {
       if (!document.activeElement.classList.contains('keyboard-button') && !document.activeElement.classList.contains('keyboard') && !document.activeElement.classList.contains('keyboard-row')) {
         that.setState({ ...that.state, showKeyboard: false });
@@ -117,5 +117,10 @@ class KeyboardedInput extends React.Component {
     );
   }
 }
+
+KeyboardedInput.defaultProps = {
+  onFocus: () => {},
+  onBlur: () => {},
+};
 
 export default KeyboardedInput;
