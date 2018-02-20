@@ -13,6 +13,7 @@ import BackspaceIcon from './icons/BackspaceIcon';
 import LanguageIcon from './icons/LanguageIcon';
 import ShiftIcon from './icons/ShiftIcon';
 import DraggableIcon from './icons/DraggableIcon';
+import KeyboardBackspaceButton from './KeyboardBackspaceButton'
 
 export default class Keyboard extends PureComponent {
   static propTypes = {
@@ -90,7 +91,7 @@ export default class Keyboard extends PureComponent {
 
   handleLanguageClick() {
     this.setState({ currentLanguage: this.state.currentLanguage === this.props.defaultKeyboard
-      ? this.props.secondaryKeyboard : this.props.defaultKeyboard });
+        ? this.props.secondaryKeyboard : this.props.defaultKeyboard });
   }
 
   clearInput() {
@@ -200,6 +201,14 @@ export default class Keyboard extends PureComponent {
     inputNode.dispatchEvent(new CustomEvent('input'));
   }
 
+  longPressStart = () => {
+    console.log('press start');
+  };
+
+  longPressEnd = () => {
+    console.log('press end');
+  };
+
   render() {
     const { inputNode, secondaryKeyboard } = this.props;
     const keys = this.getKeys();
@@ -207,7 +216,7 @@ export default class Keyboard extends PureComponent {
     const symbolsKeyValue = this.getSymbolsKeyValue();
 
     return (
-      <Draggable 
+      <Draggable
         disabled={this.props.isDraggable === false}
         defaultPosition={{x: 0, y: 0}}
       >
@@ -224,20 +233,25 @@ export default class Keyboard extends PureComponent {
                 key={button}
               />,
             )}
-            <KeyboardButton
+            <KeyboardBackspaceButton
               value={<BackspaceIcon />}
               onClick={this.handleBackspaceClick}
+              longPressStart={this.longPressStart}
+              longPressEnd={this.longPressEnd}
+              pressCallback={this.handleBackspaceClick}
+              pressCallbackTimeout={400}
+              finite={false}
             />
           </div>
 
           {keys.map((row, i) =>
             <div key={`r${i}`} className="keyboard-row">
               {keys.length === i + 1 &&
-                <KeyboardButton
-                  classes="shift-symbols"
-                  value={<ShiftIcon />}
-                  onClick={this.handleShiftClick}
-                />
+              <KeyboardButton
+                classes="shift-symbols"
+                value={<ShiftIcon />}
+                onClick={this.handleShiftClick}
+              />
               }
               {row.map((button, ii) =>
                 <KeyboardButton
@@ -248,11 +262,11 @@ export default class Keyboard extends PureComponent {
               )}
 
               {keys.length === i + 1 &&
-                <KeyboardButton
-                  classes="shift-symbols"
-                  value={symbolsKeyValue}
-                  onClick={this.handleSymbolsClick}
-                />
+              <KeyboardButton
+                classes="shift-symbols"
+                value={symbolsKeyValue}
+                onClick={this.handleSymbolsClick}
+              />
               }
             </div>,
           )}
