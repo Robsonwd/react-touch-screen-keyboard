@@ -8,7 +8,7 @@ import LatinLayout from './layouts/LatinLayout';
 import CyrillicLayout from './layouts/CyrillicLayout';
 import SymbolsLayout from './layouts/SymbolsLayout';
 import GermanLayout from './layouts/GermanLayout';
-import NorwegianLayout from './layouts/NorwegianLayout'
+import NorwegianLayout from './layouts/NorwegianLayout';
 
 import BackspaceIcon from './icons/BackspaceIcon';
 import LanguageIcon from './icons/LanguageIcon';
