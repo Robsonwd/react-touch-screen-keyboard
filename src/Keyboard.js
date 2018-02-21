@@ -8,12 +8,13 @@ import LatinLayout from './layouts/LatinLayout';
 import CyrillicLayout from './layouts/CyrillicLayout';
 import SymbolsLayout from './layouts/SymbolsLayout';
 import GermanLayout from './layouts/GermanLayout';
+import NorwegianLayout from './layouts/NorwegianLayout'
 
 import BackspaceIcon from './icons/BackspaceIcon';
 import LanguageIcon from './icons/LanguageIcon';
 import ShiftIcon from './icons/ShiftIcon';
 import DraggableIcon from './icons/DraggableIcon';
-import KeyboardBackspaceButton from './KeyboardBackspaceButton'
+import KeyboardBackspaceButton from './KeyboardBackspaceButton';
 
 export default class Keyboard extends PureComponent {
   static propTypes = {
@@ -64,6 +65,8 @@ export default class Keyboard extends PureComponent {
       keysSet = GermanLayout;
     } else if (this.state.currentLanguage === 'ru') {
       keysSet = CyrillicLayout;
+    } else if (this.state.currentLanguage === 'no') {
+      keysSet = NorwegianLayout;
     } else if (this.state.currentLanguage) {
       keysSet = this.state.currentLanguage;
     } else {
