@@ -305,7 +305,7 @@ export default class Keyboard extends PureComponent {
               />
               : null}
             <KeyboardButton
-              value={'Skjul'}
+              value={'Skjul tastatur'}
               classes="keyboard-submit-button"
               onClick={this.props.hideKeyboard}
             />
