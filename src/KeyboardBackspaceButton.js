@@ -83,10 +83,10 @@ export default class KeyboardBackspaceButton extends React.Component {
 }
 
 KeyboardBackspaceButton.defaultProps = {
-  startTimeout: 200,
+  startTimeout: 300,
   longPressStart: () => {},
   longPressEnd: () => {},
-  pressCallbackTimeout: 100,
+  pressCallbackTimeout: 300,
   pressCallback: undefined,
   finite: true,
   className: '',
