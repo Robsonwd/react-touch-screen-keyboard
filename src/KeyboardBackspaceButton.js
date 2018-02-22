@@ -11,6 +11,10 @@ export default class KeyboardBackspaceButton extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentWillUnmount() {
+    this.onMouseOut();
+  }
+
   onMouseDown = () => {
     this.clearTimeout();
     this.longPressTimeout = setTimeout(this.longPressStart, this.props.startTimeout);
