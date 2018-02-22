@@ -239,7 +239,6 @@ export default class Keyboard extends PureComponent {
               longPressStart={this.longPressStart}
               longPressEnd={this.longPressEnd}
               pressCallback={this.handleBackspaceClick}
-              pressCallbackTimeout={400}
               finite={false}
             />
           </div>
